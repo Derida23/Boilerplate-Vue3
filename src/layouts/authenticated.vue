@@ -27,4 +27,4 @@ import Logo from "@/assets/icon/privy-logo.vue";
   </div>
 </template>
 
-<style src="../assets/styles/layout/Auth.styles.scss"></style>
+<style lang="scss" src="../assets/styles/layout/Auth.styles.scss"></style>

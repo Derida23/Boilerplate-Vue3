@@ -1,0 +1,89 @@
+$variants: "primary", "danger", "gray";
+
+button {
+  @apply outline-none;
+  @apply rounded;
+  @apply text-base;
+  @apply font-medium;
+  @apply px-9;
+  @apply py-3;
+  @apply box-border;
+  @apply leading-4;
+  @apply font-roboto;
+  @apply relative;
+
+  &.full {
+    @apply w-full;
+  }
+
+  &:not(:last-child) {
+    @apply mr-2;
+  }
+
+  @each $variant in $variants {
+    &.#{$variant} {
+      @apply bg-#{$variant};
+      @apply text-white;
+      @apply border;
+      @apply border-transparent;
+
+      @media (hover: hover) {
+        &:hover {
+          @apply brightness-90;
+        }
+      }
+
+      &:active {
+        @apply brightness-75;
+      }
+    }
+
+    &.#{$variant}-outline {
+      @apply bg-transparent;
+      @apply text-#{$variant};
+      @apply border;
+      @apply border-#{$variant};
+
+      @media (hover: hover) {
+        &:hover {
+          @apply bg-#{$variant};
+          @apply brightness-90;
+          @apply text-white;
+        }
+      }
+
+      &:active {
+        @apply text-white;
+        @apply brightness-75;
+      }
+    }
+  }
+
+  &.loading {
+    @apply opacity-50;
+  }
+
+  .loading-animation {
+    @apply absolute;
+    @apply top-2.5;
+    @apply right-0;
+    @apply animate-spin;
+    @apply mr-3;
+    @apply h-5;
+    @apply w-5;
+    @apply text-white;
+    @apply inline-block;
+  }
+
+  &:disabled {
+    @apply opacity-50;
+    @apply cursor-not-allowed;
+    @apply pointer-events-none;
+  }
+
+  .button-icon {
+    @apply h-3.5;
+    @apply w-3.5;
+    @apply inline-block;
+  }
+}

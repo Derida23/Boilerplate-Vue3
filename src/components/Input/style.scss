@@ -1,0 +1,72 @@
+.input-wrapper {
+
+  &:not(:last-child) {
+    @apply mb-4;
+  }
+
+  .input-label {
+    @apply block;
+    @apply text-[0.813rem];
+    @apply leading-[1.125rem];
+    @apply mb-1;
+  }
+
+  .input-group {
+    @apply relative;
+
+    .input-component {
+      @apply appearance-none;
+      @apply outline-none;
+      @apply border;
+      @apply rounded-md;
+      @apply border-gray;
+      @apply py-2;
+      @apply px-3;
+      @apply w-full;
+
+      &:focus {
+        @apply border-primary;
+      }
+
+      &:placeholder {
+        @apply text-gray;
+      }
+    }
+
+    .eye-icon {
+      @apply text-gray;
+      @apply h-[1.125rem];
+      @apply w-[1.125rem];
+      @apply absolute;
+      @apply top-1/2;
+      @apply right-3;
+      @apply cursor-pointer;
+      @apply -translate-y-1/2;
+
+      &.active {
+        @apply text-primary;
+      }
+    }
+
+    &.has-error {
+      .input-component {
+        @apply border-danger;
+        @apply animate-shake;
+      }
+    }
+  }
+
+
+  .error {
+    @apply mt-1;
+    @apply flex;
+    @apply text-danger;
+    @apply text-xs;
+    @apply items-center;
+    @apply animate-shake;
+
+    .error-icon {
+      @apply mr-2;
+    }
+  }
+}

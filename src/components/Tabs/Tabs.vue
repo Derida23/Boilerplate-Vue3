@@ -57,4 +57,4 @@ const leftPosition = computed(() => {
   </div>
 </template>
 
-<style src="./style.scss"></style>
+<style lang="scss" src="./style.scss"></style>
