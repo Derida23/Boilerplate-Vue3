@@ -1,0 +1,14 @@
+.auth {
+  &-date {
+    @apply font-medium;
+  }
+
+  &-tab {
+    @apply flex;
+    @apply flex-col;
+    @apply justify-center;
+    @apply max-w-[322px];
+    @apply mt-8;
+    @apply cursor-pointer;
+  }
+}
