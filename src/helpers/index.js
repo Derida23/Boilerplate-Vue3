@@ -6,3 +6,17 @@ export const useIdGenerator = (option) => {
 
   return generator(option?.size);
 };
+
+export const formatPhoneNumber = (input, isRevese = false) => {
+  if (input.startsWith("+62")) {
+    const check_input = input.slice(3);
+    return `0${check_input}`;
+  }
+  if (input.startsWith("62")) {
+    const check_input = input.slice(2);
+    return `0${check_input}`;
+  }
+  if (input.startsWith("0")) {
+    return input;
+  }
+};

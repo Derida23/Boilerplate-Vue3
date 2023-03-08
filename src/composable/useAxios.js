@@ -14,9 +14,9 @@ export default function useAxios() {
 
     try {
       const response = await axios(url, config);
-      state.data = response.data;
+      state.data = response.data.data;
     } catch (err) {
-      state.error = err.message;
+      state.error = err.response.data.error;
       console.error(err);
     } finally {
       state.loading = false;
