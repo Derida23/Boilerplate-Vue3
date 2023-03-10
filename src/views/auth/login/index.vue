@@ -11,12 +11,12 @@ import schema from "@/helpers/schema/form";
 import { storeToRefs } from "pinia";
 
 const form = ref();
-const route = useRouter;
+const router = useRouter();
 const toast = useToast();
-const { login, checkCredentials, setToken } = useStore();
+const { login } = useStore();
 
 const authStore = useStore();
-const { error_notification, error_message } = storeToRefs(authStore);
+const { error_notification, error_message, valid } = storeToRefs(authStore);
 
 const onSubmit = async (value) => {
   const phone = formatPhoneNumber(value.phone_number);
@@ -28,7 +28,11 @@ const onSubmit = async (value) => {
     device_type: 2,
   };
 
-  await login(data);
+  const response = await login(data);
+
+  if (response) {
+    router.push("/main");
+  }
 };
 
 watch(error_notification, (val) => {

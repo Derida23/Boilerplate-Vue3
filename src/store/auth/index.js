@@ -13,6 +13,7 @@ export const useStore = defineStore("auth", {
       fetched: false,
       error_notification: false,
       error_message: "",
+      valid: false,
     };
   },
   getters: {
@@ -33,7 +34,7 @@ export const useStore = defineStore("auth", {
       localStorage.setItem("access_token", token);
       this.token = token;
     },
-    async checkCredential(redirect = "/", enableRedirect = true) {
+    async checkCredential() {
       this.loading = true;
 
       const { state, request } = useAxios();
@@ -46,9 +47,19 @@ export const useStore = defineStore("auth", {
       });
 
       const raw = toRaw(state);
-      console.log("credential ->", toRaw(raw));
+      if (raw.data) {
+        this.valid = true;
+
+        return true;
+      } else {
+        this.error_notification = true;
+        this.error_message = "dont cheating bruh, you inspect storage :)";
+
+        return false;
+      }
     },
     async login(params) {
+      this.loading = true;
       const { state, request } = useAxios();
 
       await request("/api/v1/oauth/sign_in", {
@@ -61,11 +72,13 @@ export const useStore = defineStore("auth", {
       if (raw.data) {
         this.setToken(raw.data.user.access_token);
         await this.checkCredential();
+        this.loading = false;
 
         return true;
       } else {
         this.error_notification = true;
         this.error_message = raw.error.errors[0];
+        this.loading = false;
 
         return false;
       }
